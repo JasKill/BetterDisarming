@@ -3,16 +3,31 @@ using Smod2;
 using Smod2.API;
 using Smod2.EventHandlers;
 using Smod2.Events;
+using System.Threading;
 
 namespace BetterDisarming
 {
-	class RoundEventHandler : IEventHandlerCheckEscape, IEventHandlerDoorAccess, IEventHandlerElevatorUse
+	class RoundEventHandler : IEventHandlerRoundStart, IEventHandlerRoundEnd, IEventHandlerCheckEscape, IEventHandlerDoorAccess, IEventHandlerElevatorUse
 	{
 		private Plugin plugin;
+
+		public bool roundStarted = false;
 
 		public RoundEventHandler(Plugin plugin)
 		{
 			this.plugin = plugin;
+		}
+
+		public void OnRoundStart(RoundStartEvent ev)
+		{
+			roundStarted = true;
+			Thread EscapeHandler = new Thread(new ThreadStart(() => new EscapeHandler(this, plugin)));
+			EscapeHandler.Start();
+		}
+
+		public void OnRoundEnd(RoundEndEvent ev)
+		{
+			roundStarted = false;
 		}
 
 		public void OnDoorAccess(PlayerDoorAccessEvent ev)
@@ -30,24 +45,6 @@ namespace BetterDisarming
 			{
 				if (ev.Player.IsHandcuffed())
 					ev.AllowUse = false;
-			}
-		}
-
-		public void OnCheckEscape(PlayerCheckEscapeEvent ev)
-		{
-			if (ev.Player.TeamRole.Role.Equals(Role.CHAOS_INSUGENCY) && ev.Player.IsHandcuffed())
-			{
-				if (plugin.GetConfigBool("bd_change_ci_escape"))
-				{
-					ev.Player.ChangeRole(Role.NTF_LIEUTENANT);
-				}
-			}
-			if (ev.Player.TeamRole.Role.Equals(Team.NINETAILFOX) && ev.Player.IsHandcuffed())
-			{
-				if (plugin.GetConfigBool("bd_change_ntf_escape"))
-				{
-					ev.Player.ChangeRole(Role.CHAOS_INSUGENCY);
-				}
 			}
 		}
 	}
