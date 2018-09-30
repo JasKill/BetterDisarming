@@ -17,16 +17,16 @@ namespace BetterDisarming
 
 		public void OnDoorAccess(PlayerDoorAccessEvent ev)
 		{
-			if(this.GetConfigBool("bd_prohibit_doors"))
+			if (plugin.GetConfigBool("bd_prohibit_doors"))
 			{
 				if (ev.Player.IsHandcuffed())
 					ev.Allow = false;
-			}	
+			}
 		}
 
 		public void OnElevatorUse(PlayerElevatorUseEvent ev)
 		{
-			if(this.GetConfigBool("bd_prohibit_elevators"))
+			if (plugin.GetConfigBool("bd_prohibit_elevators"))
 			{
 				if (ev.Player.IsHandcuffed())
 					ev.AllowUse = false;
@@ -35,17 +35,18 @@ namespace BetterDisarming
 
 		public void OnCheckEscape(PlayerCheckEscapeEvent ev)
 		{
-			if(this.GetConfigBool("bd_change_ci_escape"))
+			if (plugin.GetConfigBool("bd_change_ci_escape"))
 			{
 				if (ev.Player.TeamRole.Role.Equals(Role.CHAOS_INSUGENCY) && ev.Player.IsHandcuffed())
 				{
 					ev.Player.ChangeRole(Role.NTF_LIEUTENANT);
 				}
-			if(this.GetConfigBool("bd_change_ntf_escape"))
-			{
-				if (ev.Player.TeamRole.Role.Equals(Team.NINETAILFOX) && ev.Player.IsHandcuffed())
+				if (plugin.GetConfigBool("bd_change_ntf_escape"))
 				{
-					ev.Player.ChangeRole(Role.CHAOS_INSUGENCY);
+					if (ev.Player.TeamRole.Role.Equals(Team.NINETAILFOX) && ev.Player.IsHandcuffed())
+					{
+						ev.Player.ChangeRole(Role.CHAOS_INSUGENCY);
+					}
 				}
 			}
 		}
