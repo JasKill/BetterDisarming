@@ -24,6 +24,10 @@ namespace BetterDisarming
 		public override void Register()
 		{
 			this.AddEventHandlers(new RoundEventHandler(this));
+			this.AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_doors", true, Smod2.Config.SettingType.BOOL, true, "Prevent cuffed players from accessing doors."));
+			this.AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_elevators", true, Smod2.Config.SettingType.BOOL, true, "Prevent cuffed players from calling elevators."));
+			this.AddConfig(new Smod2.Config.ConfigSetting("bd_change_ci_escape", true, Smod2.Config.SettingType.BOOL, true, "Makes cuffed CI turn into NTF."));
+			this.AddConfig(new Smod2.Config.ConfigSetting("bd_change_ntf_escape", true, Smod2.Config.SettingType.BOOL, true, "Makes cuffed NTF turn into CI on escape."));
 		}
 	}
 }
