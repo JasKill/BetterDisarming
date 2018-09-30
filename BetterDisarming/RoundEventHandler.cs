@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace BetterDisarming
 {
-	class RoundEventHandler : IEventHandlerRoundStart, IEventHandlerRoundEnd, IEventHandlerCheckEscape, IEventHandlerDoorAccess, IEventHandlerElevatorUse
+	class RoundEventHandler : IEventHandlerRoundStart, IEventHandlerRoundEnd, IEventHandlerDoorAccess, IEventHandlerElevatorUse
 	{
 		private Plugin plugin;
 
