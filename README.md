@@ -12,9 +12,9 @@
 
 Place the "BetterDisarming.dll" file in your sm_plugins folder.
 
-| Cnfig        | Type          | Description  |
-| :-------------: |:-------------:| :-----:|
-| bd_prohibit_doors | Bool | Prevents hancuffed players from using doors  |
-| bd_prohibit_elevators | Bool | Prevents hancuffed players from using delevators |
-| bd_change_ci_escape | Bool | Changes Chaos to MTF Lieutenant if they escape while handcuffed |
-| bd_change_ntf_escape | Bool | Changes MTF to Chaos if they escape while handcuffed |
+| Cnfig        | Type          | Default          | Description  |
+| :-------------: |:-------------:| :-----:|:-----:|
+| bd_prohibit_doors | Bool | True | Prevents hancuffed players from using doors  |
+| bd_prohibit_elevators | Bool | True | Prevents hancuffed players from using delevators |
+| bd_change_ci_escape | Bool | True | Changes Chaos to MTF Lieutenant if they escape while handcuffed |
+| bd_change_ntf_escape | Bool | True | Changes MTF to Chaos if they escape while handcuffed |
