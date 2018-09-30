@@ -35,18 +35,18 @@ namespace BetterDisarming
 
 		public void OnCheckEscape(PlayerCheckEscapeEvent ev)
 		{
-			if (plugin.GetConfigBool("bd_change_ci_escape"))
+			if (ev.Player.TeamRole.Role.Equals(Role.CHAOS_INSUGENCY) && ev.Player.IsHandcuffed())
 			{
-				if (ev.Player.TeamRole.Role.Equals(Role.CHAOS_INSUGENCY) && ev.Player.IsHandcuffed())
+				if (plugin.GetConfigBool("bd_change_ci_escape"))
 				{
 					ev.Player.ChangeRole(Role.NTF_LIEUTENANT);
 				}
+			}
+			if (ev.Player.TeamRole.Role.Equals(Team.NINETAILFOX) && ev.Player.IsHandcuffed())
+			{
 				if (plugin.GetConfigBool("bd_change_ntf_escape"))
 				{
-					if (ev.Player.TeamRole.Role.Equals(Team.NINETAILFOX) && ev.Player.IsHandcuffed())
-					{
-						ev.Player.ChangeRole(Role.CHAOS_INSUGENCY);
-					}
+					ev.Player.ChangeRole(Role.CHAOS_INSUGENCY);
 				}
 			}
 		}
