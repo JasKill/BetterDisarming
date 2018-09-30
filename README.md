@@ -3,8 +3,8 @@
 ### A plugin for SCP: Secret Laboratory
 
 - Doors and elevators are locked for those who are disarmed.
-- Disarmed MTF become chaos after escaping.
-- Disarmed chaos become lieutenants after escaping.
+- Disarmed MTF become Chaos after escaping.
+- Disarmed Chaos become MTF Lieutenants after escaping.
 
 # Installation
 
