@@ -12,7 +12,7 @@
 
 Place the "BetterDisarming.dll" file in your sm_plugins folder.
 
-| Cnfig        |  Default          | Description  |
+| Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
 | bd_prohibit_doors | True | Prevents handcuffed players from using doors  |
 | bd_prohibit_elevators | True | Prevents handcuffed players from using delevators |
