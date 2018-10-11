@@ -22,9 +22,14 @@ namespace BetterDisarming
 						if ((pos.x >= 174 && pos.x <= 183) && (pos.y >= 980 && pos.y <= 990) && (pos.z >= 25 && pos.z <= 34))
 						{
 							if (player.TeamRole.Team.Equals(Team.NINETAILFOX) && player.IsHandcuffed() && ntf)
-								player.ChangeRole(Role.CHAOS_INSUGENCY);
+							{
+								player.ChangeRole(Role.CHAOS_INSUGENCY, true, true, true, true);
+							}
 							else if (player.TeamRole.Team.Equals(Team.CHAOS_INSURGENCY) && player.IsHandcuffed() && ci)
-								player.ChangeRole(Role.NTF_LIEUTENANT);
+							{
+								player.ChangeRole(Role.NTF_LIEUTENANT, true, true, true, true);
+							}
+							
 						}
 					}
 				}
