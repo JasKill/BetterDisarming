@@ -9,7 +9,7 @@ namespace BetterDisarming
 	author = "Cyanox",
 	name = "BetterDisarming",
 	description = "Changes up how disarming works",
-	id = "cyan.betterdisarming",
+	id = "cyan.better.disarming",
 	version = "0.6",
 	SmodMajor = 3,
 	SmodMinor = 0,
