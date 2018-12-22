@@ -23,7 +23,7 @@ namespace BetterDisarming
 						{
 							if (player.TeamRole.Team.Equals(Team.NINETAILFOX) && player.IsHandcuffed() && ntf)
 							{
-								player.ChangeRole(Role.CHAOS_INSUGENCY, true, true, true, true);
+								player.ChangeRole(Role.CHAOS_INSURGENCY, true, true, true, true);
 							}
 							else if (player.TeamRole.Team.Equals(Team.CHAOS_INSURGENCY) && player.IsHandcuffed() && ci)
 							{
