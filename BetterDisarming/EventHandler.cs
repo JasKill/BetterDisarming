@@ -28,6 +28,11 @@ namespace BetterDisarming
 
 		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
 		{
+			// Reset data
+			overrideClassd = false;
+			overrideScientist = false;
+			roleDict.Clear();
+
 			LoadConfigs();
 			LoadEscapeList();
 			if (roleDict.ContainsKey((int)Smod2.API.Role.CLASSD)) overrideClassd = true;
@@ -43,9 +48,6 @@ namespace BetterDisarming
 		public void OnRoundEnd(RoundEndEvent ev)
 		{
 			isRoundStarted = false;
-			overrideClassd = false;
-			overrideScientist = false;
-			roleDict.Clear();
 		}
 
 		public void OnDoorAccess(PlayerDoorAccessEvent ev)
