@@ -68,8 +68,11 @@ namespace BetterDisarming
 
 		public void OnCheckEscape(PlayerCheckEscapeEvent ev)
 		{
-			if (ev.Player.TeamRole.Role == Smod2.API.Role.CLASSD && overrideClassd) ev.AllowEscape = false;
-			if (ev.Player.TeamRole.Role == Smod2.API.Role.SCIENTIST && overrideScientist) ev.AllowEscape = false;
+			if (ev.Player.IsHandcuffed())
+			{
+				if (ev.Player.TeamRole.Role == Smod2.API.Role.CLASSD && overrideClassd) ev.AllowEscape = false;
+				if (ev.Player.TeamRole.Role == Smod2.API.Role.SCIENTIST && overrideScientist) ev.AllowEscape = false;
+			}
 		}
 	}
 }
