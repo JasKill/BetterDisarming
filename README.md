@@ -19,4 +19,4 @@ Place the "BetterDisarming.dll" file in your sm_plugins folder.
 | bd_prohibit_doors | True | Prevents handcuffed players from using doors.  |
 | bd_prohibit_elevators | True | Prevents handcuffed players from using delevators. |
 | bd_check_interval | 1.00 | How long before every escape check in seconds. |
-| bd_escape_list | 11:8,12:8,13:8,8:11 | A list of roles who can escape and what they turn into. Every entry is seperated with a comma in the format `EntryTeam:ExitTeam`. You can view a list of team IDs [here.](https://github.com/Cyanox62/BetterDisarming/wiki/Role-IDs) |
+| bd_escape_list | 11:8,12:8,13:8,8:11 | A list of roles who can escape and what they turn into. Every entry is separated with a comma in the format `EntryTeam:ExitTeam`. You can view a list of team IDs [here.](https://github.com/Cyanox62/BetterDisarming/wiki/Role-IDs) |
