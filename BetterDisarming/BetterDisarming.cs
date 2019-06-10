@@ -1,6 +1,4 @@
-﻿using System;
-using Smod2;
-using Smod2.API;
+﻿using Smod2;
 using Smod2.Attributes;
 
 namespace BetterDisarming
@@ -8,9 +6,9 @@ namespace BetterDisarming
 	[PluginDetails(
 	author = "Cyanox",
 	name = "BetterDisarming",
-	description = "Changes up how disarming works",
+	description = "Changes up how disarming works.",
 	id = "cyan.better.disarming",
-	version = "0.6",
+	version = "0.8",
 	SmodMajor = 3,
 	SmodMinor = 0,
 	SmodRevision = 0
@@ -23,11 +21,11 @@ namespace BetterDisarming
 
 		public override void Register()
 		{
-			this.AddEventHandlers(new RoundEventHandler(this));
-			this.AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_doors", true, Smod2.Config.SettingType.BOOL, true, "Prevent cuffed players from accessing doors."));
-			this.AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_elevators", true, Smod2.Config.SettingType.BOOL, true, "Prevent cuffed players from calling elevators."));
-			this.AddConfig(new Smod2.Config.ConfigSetting("bd_change_ci_escape", true, Smod2.Config.SettingType.BOOL, true, "Makes cuffed CI turn into NTF."));
-			this.AddConfig(new Smod2.Config.ConfigSetting("bd_change_ntf_escape", true, Smod2.Config.SettingType.BOOL, true, "Makes cuffed NTF turn into CI on escape."));
+			AddEventHandlers(new EventHandler(this));
+			AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_doors", true, false, true, "Prevent cuffed players from accessing doors."));
+			AddConfig(new Smod2.Config.ConfigSetting("bd_prohibit_elevators", true, false, true, "Prevent cuffed players from calling elevators."));
+			AddConfig(new Smod2.Config.ConfigSetting("bd_check_interval", 1f, false, true, "How long before every escape check."));
+			AddConfig(new Smod2.Config.ConfigSetting("bd_escape_list", "11:8,12:8,13:8,8:11", false, true, "A list of roles who can escape and what they turn into."));
 		}
 	}
 }
