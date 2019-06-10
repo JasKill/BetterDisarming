@@ -8,7 +8,7 @@ namespace BetterDisarming
 	name = "BetterDisarming",
 	description = "Changes up how disarming works.",
 	id = "cyan.better.disarming",
-	version = "0.8",
+	version = "0.8.1",
 	SmodMajor = 3,
 	SmodMinor = 0,
 	SmodRevision = 0
