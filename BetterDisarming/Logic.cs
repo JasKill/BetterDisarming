@@ -15,7 +15,7 @@ namespace BetterDisarming
 			escapeList = instance.GetConfigString("bd_escape_list");
 		}
 
-		private bool LoadEscapeList()
+		private void LoadEscapeList()
 		{
 			foreach (string entry in escapeList.Split(','))
 			{
@@ -29,16 +29,13 @@ namespace BetterDisarming
 					else
 					{
 						instance.Info($"ERROR! (entry: {entry}) Team is not a valid number.");
-						return false;
 					}
 				}
 				else
 				{
 					instance.Info($"ERROR! (entry: {entry}) Invalid formatting.");
-					return false;
 				}
 			}
-			return true;
 		}
 
 		private IEnumerator<float> CheckEscape()

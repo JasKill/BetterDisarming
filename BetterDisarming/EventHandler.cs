@@ -29,11 +29,9 @@ namespace BetterDisarming
 		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
 		{
 			LoadConfigs();
-			if (LoadEscapeList())
-			{
-				if (roleDict.ContainsKey((int)Smod2.API.Role.CLASSD)) overrideClassd = true;
-				if (roleDict.ContainsKey((int)Smod2.API.Role.SCIENTIST)) overrideScientist = true;
-			}
+			LoadEscapeList();
+			if (roleDict.ContainsKey((int)Smod2.API.Role.CLASSD)) overrideClassd = true;
+			if (roleDict.ContainsKey((int)Smod2.API.Role.SCIENTIST)) overrideScientist = true;
 		}
 
 		public void OnRoundStart(RoundStartEvent ev)
