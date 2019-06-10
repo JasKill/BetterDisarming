@@ -1,5 +1,7 @@
 # BetterDisarming
 
+**I am no longer supporting this project, if you would like to contribute feel free to send a PR.**
+
 ### A plugin for SCP: Secret Laboratory
 
 - Doors and elevators are locked for those who are disarmed.
