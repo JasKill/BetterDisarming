@@ -1,77 +1,49 @@
-﻿using Smod2;
-using Smod2.EventHandlers;
-using Smod2.Events;
+﻿using System.Collections.Generic;
+using EXILED;
+using EXILED.Extensions;
 using MEC;
-using System.Collections.Generic;
 
 namespace BetterDisarming
 {
-	partial class EventHandler : IEventHandlerRoundStart, IEventHandlerRoundEnd, IEventHandlerDoorAccess,
-		IEventHandlerElevatorUse, IEventHandlerWaitingForPlayers, IEventHandlerCheckEscape
+	partial class EventHandlers
 	{
-		private Plugin instance;
-		private Dictionary<int, int> roleDict = new Dictionary<int, int>();
-		private bool isRoundStarted = false;
+		private static Dictionary<int, int> roleDict = new Dictionary<int, int>();
+		private static bool isRoundStarted = false;
 		private bool overrideClassd = false;
 		private bool overrideScientist = false;
 
-		// Configs
-		private bool blockDoors;
-		private bool blockElevators;
-		private float checkInterval;
-		private string escapeList;
-
-		public EventHandler(Plugin plugin)
+		public void OnWaitingForPlayers()
 		{
-			instance = plugin;
-		}
-
-		public void OnWaitingForPlayers(WaitingForPlayersEvent ev)
-		{
-			// Reset data
 			overrideClassd = false;
 			overrideScientist = false;
 			roleDict.Clear();
 
-			LoadConfigs();
+			ReloadConfigs();
 			LoadEscapeList();
-			if (roleDict.ContainsKey((int)Smod2.API.Role.CLASSD)) overrideClassd = true;
-			if (roleDict.ContainsKey((int)Smod2.API.Role.SCIENTIST)) overrideScientist = true;
+
+			if (roleDict.ContainsKey((int)RoleType.ClassD)) overrideClassd = true;
+			if (roleDict.ContainsKey((int)RoleType.Scientist)) overrideScientist = true;
 		}
 
-		public void OnRoundStart(RoundStartEvent ev)
+		public void OnRoundStart()
 		{
 			isRoundStarted = true;
 			Timing.RunCoroutine(CheckEscape());
 		}
 
-		public void OnRoundEnd(RoundEndEvent ev)
+		public void OnRoundEnd()
 		{
 			isRoundStarted = false;
 		}
 
-		public void OnDoorAccess(PlayerDoorAccessEvent ev)
+		public void OnCheckEscape(ref CheckEscapeEvent ev)
 		{
-			if (blockDoors && ev.Player.IsHandcuffed())
+			if (Player.IsHandCuffed(ev.Player))
 			{
-				ev.Allow = false;
-			}
-		}
-
-		public void OnElevatorUse(PlayerElevatorUseEvent ev)
-		{
-			if (blockElevators && ev.Player.IsHandcuffed())
-			{
-				ev.AllowUse = false;
-			}
-		}
-
-		public void OnCheckEscape(PlayerCheckEscapeEvent ev)
-		{
-			if (ev.Player.IsHandcuffed())
-			{
-				if (ev.Player.TeamRole.Role == Smod2.API.Role.CLASSD && overrideClassd) ev.AllowEscape = false;
-				if (ev.Player.TeamRole.Role == Smod2.API.Role.SCIENTIST && overrideScientist) ev.AllowEscape = false;
+				if (Player.GetRole(ev.Player) == RoleType.ClassD && overrideClassd)
+					ev.Allow = false;
+				if (Player.GetRole(ev.Player) == RoleType.Scientist && overrideScientist)
+					ev.Allow = false;
 			}
 		}
 	}

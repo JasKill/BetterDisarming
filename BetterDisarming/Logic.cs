@@ -1,23 +1,27 @@
-﻿using System.Collections.Generic;
-using Smod2.API;
+﻿using System.Linq;
+using System.Collections.Generic;
 using MEC;
-using System.Linq;
+using EXILED;
+using EXILED.Extensions;
+using UnityEngine;
 
 namespace BetterDisarming
 {
-	partial class EventHandler
+	partial class EventHandlers
 	{
-		private void LoadConfigs()
+		internal static float checkInterval;
+		internal static string escapelist;
+
+		internal static void ReloadConfigs()
 		{
-			blockDoors = instance.GetConfigBool("bd_prohibit_doors");
-			blockElevators = instance.GetConfigBool("bd_prohibit_elevators");
-			checkInterval = instance.GetConfigFloat("bd_check_interval");
-			escapeList = instance.GetConfigString("bd_escape_list");
+			checkInterval = Plugin.Config.GetFloat("bd_check_interval", 1f);
+			escapelist = Plugin.Config.GetString("bd_escape_list");
+
 		}
 
 		private void LoadEscapeList()
 		{
-			foreach (string entry in escapeList.Split(','))
+			foreach (string entry in escapelist.Split(','))
 			{
 				string[] part = entry.Split(':');
 				if (part.Length == 2)
@@ -28,32 +32,29 @@ namespace BetterDisarming
 					}
 					else
 					{
-						instance.Info($"ERROR! (entry: {entry}) Team is not a valid number.");
+						Log.Info($"ERROR! (entry: {entry}) Team is not a valid number.");
 					}
 				}
 				else
 				{
-					instance.Info($"ERROR! (entry: {entry}) Invalid formatting.");
+					Log.Info($"ERROR! (entry: {entry}) Invalid formatting.");
 				}
 			}
 		}
 
-		private IEnumerator<float> CheckEscape()
+		private static IEnumerator<float> CheckEscape()
 		{
 			while (isRoundStarted)
 			{
-				foreach (Player player in instance.Server.GetPlayers().Where(x => x.IsHandcuffed()))
+				foreach (ReferenceHub player in Player.GetHubs().Where(x => x.IsHandCuffed()))
 				{
-					Vector pos = player.GetPosition();
-					if (roleDict.ContainsKey((int)player.TeamRole.Role) &&
-						pos.x >= 174 &&
-						pos.x <= 183 &&
-						pos.y >= 980 &&
-						pos.y <= 990 && 
-						pos.z >= 25 && 
-						pos.z <= 34)
+					Vector3 pos = player.GetPosition();
+					if (roleDict.ContainsKey((int)player.GetRole()) &&
+						pos.x >= 168 && pos.x <= 172 &&
+						pos.y >= 980 && pos.y <= 990 &&
+						pos.z >= 25 && pos.z <= 34)
 					{
-						player.ChangeRole((Role)roleDict[(int)player.TeamRole.Role], true, true, true, true);
+						player.SetRole((RoleType)roleDict[(int)player.GetRole()]);
 					}
 				}
 				yield return Timing.WaitForSeconds(checkInterval);
