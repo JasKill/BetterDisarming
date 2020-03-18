@@ -14,8 +14,8 @@ namespace BetterDisarming
 
 		internal static void ReloadConfigs()
 		{
-			checkInterval = Plugin.Config.GetFloat("bd_check_interval", 1f);
-			escapelist = Plugin.Config.GetString("bd_escape_list");
+			checkInterval = Plugin.Config.GetFloat("bd_check_interval", 1);
+			escapelist = Plugin.Config.GetString("bd_escape_list", "15:8,13:8,4:8,11:8,12:8,8:13");
 
 		}
 
@@ -50,7 +50,7 @@ namespace BetterDisarming
 				{
 					Vector3 pos = player.GetPosition();
 					if (roleDict.ContainsKey((int)player.GetRole()) &&
-						pos.x >= 168 && pos.x <= 172 &&
+						pos.x >= 168 && pos.x <= 174 &&
 						pos.y >= 980 && pos.y <= 990 &&
 						pos.z >= 25 && pos.z <= 34)
 					{

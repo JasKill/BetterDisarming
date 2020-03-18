@@ -10,7 +10,7 @@
 
 **[EXILED] must be installed for this to work.**
 
-Place the "BetterDisarming.dll" file in your sm_plugins folder.
+Place the "BetterDisarming.dll" file in your Plugins folder..
 
 | Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
