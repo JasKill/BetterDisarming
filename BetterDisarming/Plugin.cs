@@ -28,10 +28,10 @@ namespace BetterDisarming
 
 		public override void OnDisable()
 		{
-			Events.WaitingForPlayersEvent += ev.OnWaitingForPlayers;
-			Events.RoundStartEvent += ev.OnRoundStart;
-			Events.RoundEndEvent += ev.OnRoundEnd;
-			Events.CheckEscapeEvent += ev.OnCheckEscape;
+			Events.WaitingForPlayersEvent -= ev.OnWaitingForPlayers;
+			Events.RoundStartEvent -= ev.OnRoundStart;
+			Events.RoundEndEvent -= ev.OnRoundEnd;
+			Events.CheckEscapeEvent -= ev.OnCheckEscape;
 
 			ev = null;
 		}
