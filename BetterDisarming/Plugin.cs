@@ -1,45 +1,66 @@
-﻿using EXILED;
+﻿using Exiled.API.Features;
+using Exiled.API.Interfaces;
+using Events = Exiled.Events;
 
 namespace BetterDisarming
 {
-	public class Plugin : EXILED.Plugin
+    public class Plugin : Exiled.API.Features.Plugin
 	{
-		private EventHandlers ev;
+		public override IConfig Config { get; } = new Config();
+		public Handlers.PlayerEvents PlayerEvents;
+		public Handlers.ServerEvents ServerEvents;
+		public static Config Cfg;
 
-		private bool enabled;
-
-		public override void OnEnable()
+		public override void OnEnabled()
 		{
-			enabled = Config.GetBool("bd_enabled", true);
+			Cfg = (Config)Config;
+			Cfg.Reload();
 
-			EventHandlers.ReloadConfigs();
-
-			if (!enabled)
+			if (!Cfg.enabled)
 			{
-				Log.Info("BetterDisarming disabled");
+				Log.Info($"{Name} выключен");
 				return;
 			}
 
-			ev = new EventHandlers();
-
-			Events.WaitingForPlayersEvent += ev.OnWaitingForPlayers;
-			Events.RoundStartEvent += ev.OnRoundStart;
-			Events.RoundEndEvent += ev.OnRoundEnd;
-			Events.CheckEscapeEvent += ev.OnCheckEscape;
+			RegisterEvents();
 		}
 
-		public override void OnDisable()
+		public override void OnDisabled()
 		{
-			Events.WaitingForPlayersEvent -= ev.OnWaitingForPlayers;
-			Events.RoundStartEvent -= ev.OnRoundStart;
-			Events.RoundEndEvent -= ev.OnRoundEnd;
-			Events.CheckEscapeEvent -= ev.OnCheckEscape;
+			if (!Cfg.enabled)
+			{
+				Log.Info($"{Name} выключен");
+				return;
+			}
 
-			ev = null;
+			UnregisterEvents();
+			Log.Info($"{Name} выключен!");
 		}
 
-		public override void OnReload() { }
+		public override void OnReloaded() => Log.Info($"{Name} был перезагружен!");
 
-		public override string getName { get; } = "BetterDisarming";
+		private void RegisterEvents()
+        {
+			ServerEvents = new Handlers.ServerEvents();
+			PlayerEvents = new Handlers.PlayerEvents();
+
+			Events.Handlers.Server.WaitingForPlayers += ServerEvents.OnWaitPlayers;
+			Events.Handlers.Server.RoundStarted += ServerEvents.OnStartRound;
+			Events.Handlers.Server.RoundEnded += ServerEvents.OnEndedRound;
+
+			Events.Handlers.Player.Escaping += PlayerEvents.OnEspace;
+		}
+
+		private void UnregisterEvents()
+        {
+			Events.Handlers.Server.WaitingForPlayers -= ServerEvents.OnWaitPlayers;
+			Events.Handlers.Server.RoundStarted -= ServerEvents.OnStartRound;
+			Events.Handlers.Server.RoundEnded -= ServerEvents.OnEndedRound;
+
+			Events.Handlers.Player.Escaping -= PlayerEvents.OnEspace;
+
+			ServerEvents = null;
+			PlayerEvents = null;
+		}
 	}
 }
