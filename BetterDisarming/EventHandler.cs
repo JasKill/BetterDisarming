@@ -18,7 +18,6 @@ namespace BetterDisarming
 			overrideScientist = false;
 			roleDict.Clear();
 
-			ReloadConfigs();
 			LoadEscapeList();
 
 			if (roleDict.ContainsKey((int)RoleType.ClassD)) overrideClassd = true;

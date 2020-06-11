@@ -12,6 +12,8 @@ namespace BetterDisarming
 		{
 			enabled = Config.GetBool("bd_enabled", true);
 
+			EventHandlers.ReloadConfigs();
+
 			if (!enabled)
 			{
 				Log.Info("BetterDisarming disabled");

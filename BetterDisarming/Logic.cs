@@ -48,13 +48,11 @@ namespace BetterDisarming
 			{
 				foreach (ReferenceHub player in Player.GetHubs().Where(x => x.IsHandCuffed()))
 				{
-					Vector3 pos = player.GetPosition();
-					if (roleDict.ContainsKey((int)player.GetRole()) &&
-						pos.x >= 168 && pos.x <= 174 &&
-						pos.y >= 980 && pos.y <= 990 &&
-						pos.z >= 25 && pos.z <= 34)
+					Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
+					if (roleDict.ContainsKey((int)player.GetRole()) && Vector3.Distance(espaceArea, player.transform.position) <= Escape.radius)
 					{
 						player.SetRole((RoleType)roleDict[(int)player.GetRole()]);
+						Log.Info($"{player.GetNickname()} сбежал за {player.GetRole()}({Escape.radius})");
 					}
 				}
 				yield return Timing.WaitForSeconds(checkInterval);
