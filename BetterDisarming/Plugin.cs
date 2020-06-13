@@ -23,6 +23,7 @@ namespace BetterDisarming
 			}
 
 			RegisterEvents();
+			Log.Info($"{Name} включен!");
 		}
 
 		public override void OnDisabled()
