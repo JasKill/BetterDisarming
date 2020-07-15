@@ -4,26 +4,29 @@ using System.Collections.Generic;
 
 namespace BetterDisarming.Handlers
 {
-    public class ServerEvents
+    public class ServerHandlers
     {
+        private readonly Plugin plugin;
+        public ServerHandlers(Plugin plugin) => this.plugin = plugin;
+
         public static bool isRoundStarted = false;
         public static Dictionary<int, int> roleDict = new Dictionary<int, int>();
 
         public void OnWaitPlayers()
         {
-            PlayerEvents.overrideClassd = false;
-            PlayerEvents.overrideScientist = false;
+            PlayerHandlers.overrideClassd = false;
+            PlayerHandlers.overrideScientist = false;
             roleDict.Clear();
 
             Methods.LoadEscapeList();
 
             if (roleDict.ContainsKey((int)RoleType.ClassD))
             {
-                PlayerEvents.overrideClassd = true;
+                PlayerHandlers.overrideClassd = true;
             }
             if (roleDict.ContainsKey((int)RoleType.Scientist))
             {
-                PlayerEvents.overrideScientist = true;
+                PlayerHandlers.overrideScientist = true;
             }
         }
 

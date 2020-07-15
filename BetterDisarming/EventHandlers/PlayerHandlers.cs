@@ -2,14 +2,17 @@
 
 namespace BetterDisarming.Handlers
 {
-    public class PlayerEvents
+    public class PlayerHandlers
     {
+        private readonly Plugin plugin;
+        public PlayerHandlers(Plugin plugin) => this.plugin = plugin;
+
         public static bool overrideClassd = false;
         public static bool overrideScientist = false;
 
         public void OnEspace(EscapingEventArgs ev)
         {
-            if (/*Player.IsHandCuffed(ev.Player)*/ ev.Player.IsCuffed)
+            if (ev.Player.IsCuffed)
             {
                 if (ev.Player.Role == RoleType.ClassD && overrideClassd)
                 {

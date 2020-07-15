@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using MEC;
-using BetterDisarming.Handlers;
 using Exiled.API.Features;
 using UnityEngine;
+using BetterDisarming.Handlers;
 
 namespace BetterDisarming
 {
@@ -11,14 +11,14 @@ namespace BetterDisarming
 	{
 		public static void LoadEscapeList()
 		{
-			foreach (string entry in Plugin.Cfg.escapelist.Split(','))
+			foreach (string entry in  Plugin.Singleton.Config.Escapelist.Split(','))
 			{
 				string[] part = entry.Split(':');
 				if (part.Length == 2)
 				{
 					if (int.TryParse(part[0], out int a) && int.TryParse(part[1], out int b))
 					{
-						ServerEvents.roleDict.Add(a, b);
+						ServerHandlers.roleDict.Add(a, b);
 					}
 					else
 					{
@@ -34,19 +34,19 @@ namespace BetterDisarming
 
 		public static IEnumerator<float> CheckEscape()
 		{
-			while (ServerEvents.isRoundStarted)
+			Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
+
+			while (ServerHandlers.isRoundStarted)
 			{
 				foreach (Player player in Player.List.Where(x => x.IsCuffed))
-				{
-					Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
-					if (ServerEvents.roleDict.ContainsKey((int)player.Role) && Vector3.Distance(espaceArea, player.ReferenceHub.transform.position) <= Escape.radius)
+				{					
+					if (ServerHandlers.roleDict.ContainsKey((int)player.Role) && Vector3.Distance(espaceArea, player.ReferenceHub.transform.position) <= Escape.radius)
 					{
-						//player.SetRole((RoleType)ServerEvents.roleDict[(int)player.Role]);
-						SetRole(player, (RoleType)ServerEvents.roleDict[(int)player.Role]);
+						SetRole(player, (RoleType)ServerHandlers.roleDict[(int)player.Role]);
 						Log.Info($"{player.Nickname} сбежал за {player.Role}({Escape.radius})");
 					}
 				}
-				yield return Timing.WaitForSeconds(Plugin.Cfg.checkInterval);
+				yield return Timing.WaitForSeconds(Plugin.Singleton.Config.CheckInterval);
 			}
 		}
 
