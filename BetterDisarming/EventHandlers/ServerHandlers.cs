@@ -16,9 +16,6 @@ namespace BetterDisarming.Handlers
         {
             PlayerHandlers.overrideClassd = false;
             PlayerHandlers.overrideScientist = false;
-            roleDict.Clear();
-
-            Methods.LoadEscapeList();
 
             if (roleDict.ContainsKey((int)RoleType.ClassD))
             {

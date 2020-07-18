@@ -9,6 +9,8 @@ namespace BetterDisarming
 {
     public class Methods
 	{
+		private static Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
+
 		public static void LoadEscapeList()
 		{
 			foreach (string entry in  Plugin.Singleton.Config.Escapelist.Split(','))
@@ -34,15 +36,13 @@ namespace BetterDisarming
 
 		public static IEnumerator<float> CheckEscape()
 		{
-			Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
-
 			while (ServerHandlers.isRoundStarted)
 			{
 				foreach (Player player in Player.List.Where(x => x.IsCuffed))
 				{					
 					if (ServerHandlers.roleDict.ContainsKey((int)player.Role) && Vector3.Distance(espaceArea, player.ReferenceHub.transform.position) <= Escape.radius)
 					{
-						SetRole(player, (RoleType)ServerHandlers.roleDict[(int)player.Role]);
+						SetRole(player,(RoleType)ServerHandlers.roleDict[(int)player.Role]);
 						Log.Info($"{player.Nickname} сбежал за {player.Role}({Escape.radius})");
 					}
 				}

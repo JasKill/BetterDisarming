@@ -10,11 +10,11 @@ namespace BetterDisarming
     public class Plugin : Plugin<Config>
 	{
 		public override string Name { get; } = "BetterDisarming";
-		public override string Author { get; } = "Cyanox62, updated JasKill";
+		public override string Author { get; } = "Cyanox62, changed JasKill";
 		public override Version Version { get; } = new Version(1, 0, 0);
 		public override Version RequiredExiledVersion { get; } = new Version(2, 0, 0);
-		public override string Prefix { get; } = "BD";
-		public override PluginPriority Priority { get; } = PluginPriority.Medium;
+		public override string Prefix { get; } = "BetterDisarming";
+		public override PluginPriority Priority { get; } = PluginPriority.Default;
 		public ServerHandlers ServerHandlers;
 		public PlayerHandlers PlayerHandlers;
 		public static Plugin Singleton;
@@ -23,6 +23,7 @@ namespace BetterDisarming
 		{
 			Singleton = this;
 
+			Methods.LoadEscapeList();
 			RegisterEvents();
 			base.OnEnabled();
 		}
