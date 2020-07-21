@@ -1,6 +1,6 @@
 # BetterDisarming
 
-**Требует EXILED 2.0.* для работы.**
+Требует EXILED 2.0.* для работы.
 
 Разместите файл BetterDisarming.dll в папке EXILED-PTB\Plugins.
 
