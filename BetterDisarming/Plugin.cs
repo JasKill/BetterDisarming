@@ -54,6 +54,9 @@ namespace BetterDisarming
 			Server.RoundEnded -= ServerHandlers.OnEndedRound;
 
 			Player.Escaping -= PlayerHandlers.OnEspace;
+
+			ServerHandlers = null;
+			PlayerHandlers = null;
 		}
 	}
 }
