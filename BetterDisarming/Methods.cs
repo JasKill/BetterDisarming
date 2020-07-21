@@ -9,10 +9,10 @@ namespace BetterDisarming
 {
     public class Methods
 	{
+		private static Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
+
 		public static IEnumerator<float> CheckEscape()
 		{
-			Vector3 espaceArea = new Vector3(177.5f, 985.0f, 29.0f);
-
 			while (ServerHandlers.isRoundStarted)
 			{
 				foreach (Player player in Player.List.Where(x => x.IsCuffed))
