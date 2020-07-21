@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Interfaces;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace BetterDisarming
@@ -7,9 +8,9 @@ namespace BetterDisarming
     {
         [Description("Плагин включен или нет.")]
         public bool IsEnabled { get; set; } = false;
-        [Description("После того как кто то сбежит, будет ожидать это время, чтобы опять можно было сбежать.")]
+        [Description("Интервал времени проверки связанных игроков.")]
         public float CheckInterval { get; set; } = 1f;
         [Description("Лист того кто может сбежать. Указывать в формате КТО СБЕГАЕТ:КЕМ БУДЕТ.")]
-        public string Escapelist { get; set; } = "15:8,13:8,4:8,11:8,12:8,8:13";
+        public Dictionary<int, int> Escapelist { get; set; } = new Dictionary<int, int>() { { 15, 8 }, { 13, 8 }, { 4, 8 }, { 11, 8 }, { 12, 8 }, { 8, 13 } };
     }
 }

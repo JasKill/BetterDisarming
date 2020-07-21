@@ -1,4 +1,5 @@
-﻿using Exiled.Events.EventArgs;
+﻿using Exiled.API.Features;
+using Exiled.Events.EventArgs;
 
 namespace BetterDisarming.Handlers
 {
@@ -18,7 +19,7 @@ namespace BetterDisarming.Handlers
                 {
                     ev.IsAllowed = false;
                 }
-                if (ev.Player.Role == RoleType.Scientist && overrideScientist)
+                else if (ev.Player.Role == RoleType.Scientist && overrideScientist)
                 {
                     ev.IsAllowed = false;
                 }

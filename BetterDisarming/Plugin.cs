@@ -23,7 +23,6 @@ namespace BetterDisarming
 		{
 			Singleton = this;
 
-			Methods.LoadEscapeList();
 			RegisterEvents();
 			base.OnEnabled();
 		}
@@ -55,6 +54,9 @@ namespace BetterDisarming
 			Server.RoundEnded -= ServerHandlers.OnEndedRound;
 
 			Player.Escaping -= PlayerHandlers.OnEspace;
+
+			PlayerHandlers = null;
+			ServerHandlers = null;
 		}
 	}
 }
