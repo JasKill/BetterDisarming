@@ -23,7 +23,6 @@ namespace BetterDisarming
 		{
 			Singleton = this;
 
-			Methods.LoadEscapeList();
 			RegisterEvents();
 			base.OnEnabled();
 		}
