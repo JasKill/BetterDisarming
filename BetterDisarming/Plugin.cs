@@ -33,7 +33,7 @@ namespace BetterDisarming
 			base.OnDisabled();
 		}
 
-		public override void OnReloaded() => Log.Info($"Плагин {Name} был перезагружен!");
+		public override void OnReloaded() => Log.Info($"Plugin {Name} has been reloaded!");
 
 		private void RegisterEvents()
         {
