@@ -1,17 +1,31 @@
 # BetterDisarming
 
-### A plugin for SCP: Secret Laboratory
+Требует EXILED 2.0.* для работы.
 
-- Configurable custom escapes
-
-# Installation
-
-**[EXILED] must be installed for this to work.**
-
-Place the "BetterDisarming.dll" file in your Plugins folder..
+Разместите файл BetterDisarming.dll в папке EXILED-PTB\Plugins.
 
 | Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
-| bd_enabled | true | True by default. Enable or disable the plugin.. |
-| bd_check_interval | 1.00 | How long before every escape check in seconds. |
-| bd_escape_list | 15:8,13:8,4:8,11:8,12:8,8:13 | A list of roles who can escape and what they turn into. Every entry is separated with a comma in the format `EntryTeam:ExitTeam`. You can view a list of role IDs [here.](https://github.com/Cyanox62/BetterDisarming/wiki/Role-IDs) |
+| bd_enabled | false | Выключен по умолчанию. Включить или отключить плагин. |
+| bd_check_interval | 1 | Интервал времени проверки связанных игроков. |
+| bd_escape_list | 15:8,13:8,4:8,11:8,12:8,8:13 | Лист того кто может сбежать. Указывать в формате КТО СБЕГАЕТ:КЕМ БУДЕТ. |
+    Лист ролей:
+    None = -1,
+    Scp173 = 0,
+    ClassD = 1,
+    Spectator = 2,
+    Scp106 = 3,
+    NtfScientist = 4,
+    Scp049 = 5,
+    Scientist = 6,
+    Scp079 = 7,
+    ChaosInsurgency = 8,
+    Scp096 = 9,
+    Scp0492 = 10,
+    NtfLieutenant = 11,
+    NtfCommander = 12,
+    NtfCadet = 13,
+    Tutorial = 14,
+    FacilityGuard = 15,
+    Scp93953 = 16,
+    Scp93989 = 17
