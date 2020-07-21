@@ -1,14 +1,8 @@
 # BetterDisarming
 
-### A plugin for SCP: Secret Laboratory
+**Требует EXILED 2.0.* для работы.**
 
-- Configurable custom escapes
-
-# Installation
-
-**[EXILED] must be installed for this to work.**
-
-Place the "BetterDisarming.dll" file in your Plugins folder..
+Разместите файл BetterDisarming.dll в папке EXILED-PTB\Plugins.
 
 | Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
