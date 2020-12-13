@@ -6,7 +6,7 @@ Place the BetterDisarming.dll file in the EXILED-PTB\Plugins folder.
 
 | Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
-| bd_enabled | false | Disabled by default. Enable or disable the plugin. |
+| bd_enabled | true | Enable by default. Enable or disable the plugin. |
 | bd_check_interval | 1 | How long before every escape check in seconds. |
 | bd_escape_list | 15:8,13:8,4:8,11:8,12:8,8:13 | A list of roles who can escape and what they turn into. Format EntryTeam:ExitTeam |
     Role list:

@@ -11,7 +11,6 @@ namespace BetterDisarming
 	{
 		public override string Name { get; } = "BetterDisarming";
 		public override string Author { get; } = "Cyanox62, changed JasKill";
-		public override Version Version { get; } = new Version(1, 0, 0);
 		public override Version RequiredExiledVersion { get; } = new Version(2, 0, 0);
 		public override string Prefix { get; } = "BetterDisarming";
 		public override PluginPriority Priority { get; } = PluginPriority.Default;
