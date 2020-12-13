@@ -2,7 +2,7 @@
 
 Requires EXILED 2.0. * To work.
 
-Place the BetterDisarming.dll file in the EXILED-PTB\Plugins folder.
+Place the BetterDisarming.dll file in the EXILED\Plugins folder.
 
 | Config        |  Default          | Description  |
 | :-------------: | :-----:|:-----:|
